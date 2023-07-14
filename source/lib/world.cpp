@@ -1,8 +1,8 @@
 #include "world.hpp"
 
 world::world(game_context &game_context_ref) : _game_context_ref(game_context_ref) {
-  texBunny = LoadTexture("wabbit_alpha.png");
-  shader = LoadShader("bunnymark_instanced.vs", "bunnymark_instanced.fs");
+  texBunny = LoadTexture("../asset/wabbit_alpha.png");
+  shader = LoadShader("../asset/bunnymark_instanced.vs", "../asset/bunnymark_instanced.fs");
   bunnies = (Bunny*)RL_CALLOC(MAX_BUNNIES, sizeof(Bunny));
   bunniesCount = 0;
 

@@ -1,14 +1,29 @@
---- raylib/src/rlgl.h	2022-01-20 22:30:17.158271155 +0000
-@@ -356,6 +356,7 @@
+From 7d862cc34f09c4b66937c9781806a9cdae5ee46e Mon Sep 17 00:00:00 2001
+From: Bensuperpc <bensuperpc@gmail.com>
+Date: Fri, 14 Jul 2023 05:46:24 +0200
+Subject: [PATCH] Add instanced support
+
+Patch from: https://github.com/ChrisDill/raylib-instancing
+
+Signed-off-by: Bensuperpc <bensuperpc@gmail.com>
+---
+ src/rlgl.h | 30 ++++++++++++++++++++++++------
+ 1 file changed, 24 insertions(+), 6 deletions(-)
+
+diff --git a/src/rlgl.h b/src/rlgl.h
+index 86208de4..dd45aab1 100644
+--- a/src/rlgl.h
++++ b/src/rlgl.h
+@@ -375,6 +375,7 @@ typedef struct rlRenderBatch {
      rlDrawCall *draws;          // Draw calls array, depends on textureId
      int drawCounter;            // Draw calls counter
      float currentDepth;         // Current depth value for next draw
 +    int instances;
  } rlRenderBatch;
  
- #if defined(__STDC__) && __STDC_VERSION__ >= 199901L
-@@ -2565,18 +2566,35 @@
-                 // Bind current draw call texture, activated as GL_TEXTURE0 and binded to sampler2D texture0 by default
+ // OpenGL version
+@@ -2771,18 +2772,35 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
+                 // Bind current draw call texture, activated as GL_TEXTURE0 and Bound to sampler2D texture0 by default
                  glBindTexture(GL_TEXTURE_2D, batch->draws[i].textureId);
  
 -                if ((batch->draws[i].mode == RL_LINES) || (batch->draws[i].mode == RL_TRIANGLES)) glDrawArrays(batch->draws[i].mode, vertexOffset, batch->draws[i].vertexCount);
@@ -49,3 +64,6 @@
                  }
  
                  vertexOffset += (batch->draws[i].vertexCount + batch->draws[i].vertexAlignment);
+-- 
+2.41.0
+

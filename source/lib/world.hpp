@@ -7,8 +7,7 @@
 
 #include <omp.h>
 
-// Raylib
-#include "raylib.h"
+
 
 // World of blocks
 #include "game_element_handler.hpp"
@@ -18,10 +17,15 @@
 #include "logger/logger_facade.hpp"
 
 #include <stdlib.h>
-#include "rlgl.h"
+
 
 #define MAX_BUNNIES        500000    // 50K bunnies limit
-#define MAX_BATCH_ELEMENTS  16384    // 16K maximum elements (sprites)
+#define MAX_BATCH_ELEMENTS  16384
+#define RL_DEFAULT_BATCH_BUFFER_ELEMENTS    8192
+
+#include "rlgl.h"
+// Raylib
+#include "raylib.h"
 
 typedef struct Bunny {
     Vector2 position;

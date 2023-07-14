@@ -68,13 +68,16 @@ set_target_properties(world_of_blocks_exe
 
 # Download assets
 file(DOWNLOAD
-  https://github.com/pietmichal/raycraft/blob/master/resources/grass.png?raw=true
-  ${CMAKE_BINARY_DIR}/bin/grass.png)
+  https://github.com/raysan5/raylib/blob/master/examples/textures/resources/wabbit_alpha.png?raw=true
+  ${CMAKE_BINARY_DIR}/asset/wabbit_alpha.png)
 
 file(DOWNLOAD
-  https://github.com/raysan5/raylib/blob/master/examples/textures/resources/wabbit_alpha.png?raw=true
-  ${CMAKE_BINARY_DIR}/bin/wabbit_alpha.png)
+https://raw.githubusercontent.com/ChrisDill/raylib-instancing/master/resources/shaders/bunnymark_instanced.fs
+  ${CMAKE_BINARY_DIR}/asset/bunnymark_instanced.fs)
 
+file(DOWNLOAD
+  https://raw.githubusercontent.com/ChrisDill/raylib-instancing/master/resources/shaders/bunnymark_instanced.vs
+  ${CMAKE_BINARY_DIR}/asset/bunnymark_instanced.vs)
 
 # ---- Install rules ----
 

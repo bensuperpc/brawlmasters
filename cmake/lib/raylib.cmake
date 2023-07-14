@@ -23,7 +23,7 @@ if (NOT raylib_FOUND)
     FetchContent_Declare(raylib
         GIT_REPOSITORY https://github.com/raysan5/raylib.git
         GIT_TAG 4.5.0  # 08-04-2023
-#        PATCH_COMMAND patch -u ${raylib_SOURCE_DIR}/rlgl.h -i ${CMAKE_CURRENT_SOURCE_DIR}/rlgl.patch
+        PATCH_COMMAND git apply ${CMAKE_CURRENT_SOURCE_DIR}/rlgl.patch || true
     )
     FetchContent_MakeAvailable(raylib)
 endif()
