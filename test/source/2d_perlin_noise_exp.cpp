@@ -1,12 +1,12 @@
 #include <array>    // std::array
 #include <chrono>   // std::chrono::system_clock
+#include <cmath>    // std::abs
+#include <cstdint>  // std::uint32_t
 #include <iostream> // std::cout, std::endl
 #include <map>      // std::map
 #include <memory>   // std::unique_ptr
 #include <random>   // std::random_device, std::mt19937, std::uniform_int_distribution
 #include <vector>   // std::vector
-#include <cmath>    // std::abs
-#include <cstdint>  // std::uint32_t
 
 #include "generator.hpp"
 

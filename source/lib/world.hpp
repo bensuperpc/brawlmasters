@@ -8,23 +8,23 @@
 #include <omp.h>
 
 // World of blocks
-#include "game_element_handler.hpp"
 #include "game_context.hpp"
+#include "game_element_handler.hpp"
 
 // spdlog
 #include "logger/logger_facade.hpp"
 
 #include <stdlib.h>
 
-#define MAX_BUNNIES        500000    // 50K bunnies limit
+#define MAX_BUNNIES 500000 // 50K bunnies limit
 
 // Raylib
 #include "raylib_interface.hpp"
 
 typedef struct Bunny {
-    Vector2 position;
-    Vector2 speed;
-    Color color;
+  Vector2 position;
+  Vector2 speed;
+  Color color;
 } Bunny;
 
 class world : public game_element_handler {
@@ -39,6 +39,7 @@ public:
   void update_opengl_logic() override;
   void update_draw2d() override;
   void update_draw3d() override;
+  void update_draw_interface() override;
 
 private:
   game_context &_game_context_ref;
@@ -58,7 +59,6 @@ private:
   int bufferLength = 0;
   int buffer = 0;
   bool drawInstanced = false;
-
 };
 
 #endif // BRAWL_MASTERS_HPP

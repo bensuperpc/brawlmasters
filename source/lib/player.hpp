@@ -11,8 +11,8 @@
 #include "raylib_interface.hpp"
 
 // World of blocks
-#include "game_element_handler.hpp"
 #include "game_context.hpp"
+#include "game_element_handler.hpp"
 
 // spdlog
 #include "logger/logger_facade.hpp"
@@ -30,15 +30,17 @@ public:
   void update_draw2d() override;
   void update_draw3d() override;
 
-  Vector3 get_position() const;
+  void update_draw_interface() override;
 
-  Camera camera;
+  Camera2D camera;
 
 private:
   game_context &_game_context_ref;
 
   // logger
   std::unique_ptr<logger_decorator> player_logger;
+
+  std::unique_ptr<Texture2D> texPlayer;
 };
 
 #endif // BRAWL_MASTERS_HPP

@@ -14,12 +14,12 @@ public:
   // Update game input (Like Keyboard, Mouse, etc)
   virtual void update_game_input() = 0;
   std::chrono::steady_clock::time_point last_update_game_input;
-  std::chrono::milliseconds update_game_input_cooldown = std::chrono::milliseconds(8);
+  std::chrono::milliseconds update_game_input_cooldown = std::chrono::milliseconds(2);
 
   // Update game logic (Like physics, etc)
   virtual void update_game_logic() = 0;
   std::chrono::steady_clock::time_point last_update_game_logic;
-  std::chrono::milliseconds update_game_logic_cooldown = std::chrono::milliseconds(33);
+  std::chrono::milliseconds update_game_logic_cooldown = std::chrono::milliseconds(30);
 
   // Update opengl logic (Like Models, Textures, etc)
   virtual void update_opengl_logic() = 0;
@@ -29,8 +29,11 @@ public:
   // Won't need to be scheduled, always called
   // Update draw 3d (Like Models, Textures, etc)
   virtual void update_draw3d() = 0;
-  // Update draw 2d (Like Text, Texture2D, Interface, etc)
+  // Update draw 2d (Like Text, etc)
   virtual void update_draw2d() = 0;
+
+  // Update draw interface (Like Text, etc)
+  virtual void update_draw_interface() = 0;
 
   std::string name = "";
 };

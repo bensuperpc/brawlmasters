@@ -3,7 +3,7 @@
 world::world(game_context &game_context_ref) : _game_context_ref(game_context_ref) {
   texBunny = LoadTexture("../asset/wabbit_alpha.png");
   shader = LoadShader("../asset/bunnymark_instanced.vs", "../asset/bunnymark_instanced.fs");
-  bunnies = (Bunny*)RL_CALLOC(MAX_BUNNIES, sizeof(Bunny));
+  bunnies = (Bunny *)RL_CALLOC(MAX_BUNNIES, sizeof(Bunny));
   bunniesCount = 0;
 
   // Configure instanced buffer
@@ -13,7 +13,7 @@ world::world(game_context &game_context_ref) : _game_context_ref(game_context_re
   batch.instances = bunniesCount;
 
   rlEnableVertexArray(batch.vertexBuffer[0].vaoId);
-  bufferLength = 400000;
+  bufferLength = MAX_BUNNIES;
   buffer = rlLoadVertexBuffer(bunnies, bufferLength * sizeof(Bunny), true);
 
   // Shader attribute locations
@@ -34,12 +34,12 @@ world::world(game_context &game_context_ref) : _game_context_ref(game_context_re
 }
 
 world::~world() {
-    RL_FREE(bunnies); // Unload bunnies data array
+  RL_FREE(bunnies); // Unload bunnies data array
 
-    rlUnloadVertexBuffer(buffer);
-    rlUnloadRenderBatch(batch);
-    UnloadTexture(texBunny); // Unload bunny texture
-    UnloadShader(shader);
+  rlUnloadVertexBuffer(buffer);
+  rlUnloadRenderBatch(batch);
+  UnloadTexture(texBunny); // Unload bunny texture
+  UnloadShader(shader);
 }
 
 void world::update_game_input() {
@@ -49,11 +49,17 @@ void world::update_game_input() {
 
   if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
     // Create more bunnies
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < 10; i++) {
       if (bunniesCount < MAX_BUNNIES) {
-        bunnies[bunniesCount].position = GetMousePosition();
-        bunnies[bunniesCount].speed.x = (float)GetRandomValue(-250, 250) / 60.0f;
-        bunnies[bunniesCount].speed.y = (float)GetRandomValue(-250, 250) / 60.0f;
+
+        // Add bunny only if is inside the screen limits
+        if (_game_context_ref.mouse_position_in_world.x < 15.0f || _game_context_ref.mouse_position_in_world.x > _game_context_ref.screen_width - 15.0f
+            || _game_context_ref.mouse_position_in_world.y < 15.0f || _game_context_ref.mouse_position_in_world.y > _game_context_ref.screen_height - 15.0f) {
+          continue;
+        }
+        bunnies[bunniesCount].position = _game_context_ref.mouse_position_in_world;
+        bunnies[bunniesCount].speed.x = (float)GetRandomValue(-350, 350) / 60.0f;
+        bunnies[bunniesCount].speed.y = (float)GetRandomValue(-350, 350) / 60.0f;
         bunnies[bunniesCount].color = (Color){GetRandomValue(50, 240), GetRandomValue(80, 240), GetRandomValue(100, 240), 255};
         bunniesCount++;
         batch.instances = bunniesCount;
@@ -64,7 +70,7 @@ void world::update_game_input() {
 
 void world::update_game_logic() {
   std::lock_guard<std::mutex> lock(_world_mutex);
-  // Update bunnies
+  // #pragma omp parallel for schedule(auto)
   for (int i = 0; i < bunniesCount; i++) {
     bunnies[i].position.x += bunnies[i].speed.x;
     bunnies[i].position.y += bunnies[i].speed.y;
@@ -98,7 +104,11 @@ void world::update_draw2d() {
       DrawTexture(texBunny, bunnies[i].position.x, bunnies[i].position.y, bunnies[i].color);
     }
   }
+}
 
+void world::update_draw3d() {}
+
+void world::update_draw_interface() {
   DrawRectangle(0, 0, GetScreenWidth(), 40, BLACK);
   DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, GREEN);
 
@@ -109,5 +119,3 @@ void world::update_draw2d() {
 
   DrawFPS(10, 10);
 }
-
-void world::update_draw3d() {}

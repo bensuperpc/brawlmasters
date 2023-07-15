@@ -35,6 +35,7 @@ include(../../cmake/lib/json.cmake)
 include(../../cmake/utile/ccache.cmake)
 
 add_subdirectory(logger)
+add_subdirectory(math)
 
 set(SOURCES
     player.cpp
@@ -57,7 +58,7 @@ add_library(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
 target_link_libraries(${PROJECT_NAME} PUBLIC FastNoise2 nlohmann_json::nlohmann_json)
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenMP::OpenMP_C OpenMP::OpenMP_CXX)
-target_link_libraries(${PROJECT_NAME} PUBLIC logger::logger)
+target_link_libraries(${PROJECT_NAME} PUBLIC logger::logger benlib_math::benlib_math)
 
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_20)
 

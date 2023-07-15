@@ -2,62 +2,54 @@
 
 player::player(game_context &game_context_ref) : _game_context_ref(game_context_ref) {
   player_logger = std::make_unique<logger_decorator>("player", "player.log");
-  Camera _camera = {0};
-  _camera.position = (Vector3){48.0f, 48.0f, -48.0f};
-  _camera.target = (Vector3){-28.0f, 48.0f, -28.0f};
-  _camera.up = (Vector3){0.0f, 1.0f, 0.0f};
-  _camera.fovy = 80.0f;
-  _camera.projection = CAMERA_PERSPECTIVE;
+
+  Camera2D _camera = {{0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f, 1.0f};
+
+  _camera.target = {-0.0f, 0.0f};
+  _camera.offset = {0.0f, 0.0f};
+  _camera.rotation = 0.0f;
+  _camera.zoom = 1.0f;
 
   this->camera = _camera;
-  DisableCursor();
+  // DisableCursor();
+
+  // Image img = GenImageChecked(256, 256, 32, 32, GREEN, RED);
+  Image img = GenImageColor(16, 16, WHITE);
+  // Texture2D textureGrid = LoadTextureFromImage(img);
+  texPlayer = std::make_unique<Texture2D>(LoadTextureFromImage(img));
+  UnloadImage(img);
+  // SetTextureFilter(textureGrid, TEXTURE_FILTER_ANISOTROPIC_16X);
+  // SetTextureWrap(textureGrid, TEXTURE_WRAP_CLAMP);
 }
 
-Vector3 player::get_position() const { return this->camera.position; }
-
-player::~player() {}
+player::~player() {
+  player_logger->info("Player destructor called");
+  UnloadTexture(*texPlayer);
+}
 
 void player::update_game_input() {
-  float player_speed = 0.5f;
+  // TODO: Move to game_context
+  _game_context_ref.mouse_position_in_world = GetScreenToWorld2D(_game_context_ref.mouse_position, camera);
+
+  const float player_speed = 0.75f;
   float zoom = GetMouseWheelMove() * 0.5f;
-  Vector3 movement = {0.0f, 0.0f, 0.0f};
-  Vector3 rotation = {0.0f, 0.0f, 0.0f};
-
-  if (IsKeyPressed(KEY_F5)) {
-    auto date = std::time(nullptr);
-    std::stringstream ss;
-    ss << std::put_time(std::localtime(&date), "%Y-%m-%d_%H-%M-%S");
-    std::string filename = ss.str();
-    player_logger->info("Taking screenshot: {}", filename);
-    TakeScreenshot(("screenshot_" + filename + ".png").c_str());
+  if (IsKeyDown(KEY_UP)) {
+    camera.target.y -= player_speed;
   }
-
-  if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP)) {
-    movement.x = player_speed;
+  if (IsKeyDown(KEY_DOWN)) {
+    camera.target.y += player_speed;
   }
-  if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN)) {
-    movement.x = -player_speed;
+  if (IsKeyDown(KEY_LEFT)) {
+    camera.target.x -= player_speed;
   }
-  if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
-    movement.y = player_speed;
+  if (IsKeyDown(KEY_RIGHT)) {
+    camera.target.x += player_speed;
   }
-  if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) {
-    movement.y = -player_speed;
-  }
-  if (IsKeyDown(KEY_SPACE)) {
-    movement.z = player_speed;
-  }
-  if (IsKeyDown(KEY_LEFT_SHIFT)) {
-    movement.z = -player_speed;
-  }
-
-  rotation.x = GetMouseDelta().x * 0.05f;
-  rotation.y = GetMouseDelta().y * 0.05f;
-
-  UpdateCameraPro(&camera, movement, rotation, zoom);
-
-  // Update player chunk position in game context
-  _game_context_ref.player_pos = std::move(camera.position);
+  camera.zoom += ((float)GetMouseWheelMove() * 0.05f);
+  if (camera.zoom > 3.0f)
+    camera.zoom = 3.0f;
+  else if (camera.zoom < 0.1f)
+    camera.zoom = 0.1f;
 }
 
 void player::update_game_logic() {}
@@ -67,3 +59,13 @@ void player::update_opengl_logic() {}
 void player::update_draw2d() {}
 
 void player::update_draw3d() {}
+
+void player::update_draw_interface() {
+  // DrawTexture(*texPlayer, camera.target.x, camera.target.y, BLUE);
+  //  Draw crosshair in the middle of the screen
+  DrawLine(_game_context_ref.screen_middle.x - 10, _game_context_ref.screen_middle.y, _game_context_ref.screen_middle.x + 10, _game_context_ref.screen_middle.y,
+           SKYBLUE);
+  DrawLine(_game_context_ref.screen_middle.x, _game_context_ref.screen_middle.y - 10, _game_context_ref.screen_middle.x, _game_context_ref.screen_middle.y + 10,
+           SKYBLUE);
+  DrawCircleV(_game_context_ref.mouse_position, 10, GREEN);
+}

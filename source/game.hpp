@@ -18,7 +18,7 @@
 #include <vector>
 
 //  Raylib
-#include "raylib.h"
+#include "raylib_interface.hpp"
 
 // Cube lib
 
@@ -31,8 +31,8 @@ extern "C" {
 #include "player.hpp"
 #include "world.hpp"
 
-#include "game_element_handler.hpp"
 #include "game_context.hpp"
+#include "game_element_handler.hpp"
 #include "nlohmann/json.hpp"
 
 class game {
@@ -43,7 +43,7 @@ public:
   void init();
 
   void render_thread_func();
-  void auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_handler>>&);
+  void auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_handler>> &);
 
 private:
   std::shared_ptr<player> player1;

@@ -4,16 +4,29 @@
 #include <cstdint>
 
 namespace benlib {
-typedef struct Vector3i {
+
+struct Vector3i {
   int x;
   int y;
   int z;
-} Vector3i;
+};
 
-typedef struct Vector2i {
+struct Vector2i {
   int x;
   int y;
-} Vector2i;
+};
+
+struct Vector3f {
+  float x;
+  float y;
+  float z;
+};
+
+struct Vector2f {
+  float x;
+  float y;
+};
+
 } // namespace benlib
 
 #endif // BRAWL_MASTERS_VECTOR_HPP

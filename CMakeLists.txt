@@ -34,15 +34,13 @@ option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 add_subdirectory(source/lib) # brawl_masters_lib
 add_subdirectory(source/intro) # benlib_intro
 
-#include(cmake/lib/opencv.cmake)
 include(cmake/lib/openmp.cmake)
 include(cmake/lib/raygui.cmake)
 include(cmake/lib/raylib.cmake)
-include(cmake/lib/fast_noise2.cmake)
+#include(cmake/lib/fast_noise2.cmake)
 include(cmake/lib/spdlog.cmake)
 include(cmake/lib/json.cmake)
 include(cmake/utile/ccache.cmake)
-
 
 # ---- Declare executable ----
 

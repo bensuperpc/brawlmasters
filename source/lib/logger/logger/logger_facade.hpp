@@ -9,7 +9,7 @@
 #include <vector>
 
 #ifdef __GNUC__
-#pragma GCC diagnostic push 
+#pragma GCC diagnostic push
 #pragma GCC system_header
 #endif
 #ifdef __clang__

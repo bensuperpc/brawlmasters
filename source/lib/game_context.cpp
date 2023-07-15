@@ -14,18 +14,19 @@ game_context::game_context(std::vector<std::shared_ptr<game_element_handler>> &_
 game_context::~game_context() {}
 
 void game_context::update_game_input() {
-
   mouse_position = GetMousePosition();
-  screen_middle = Vector2({static_cast<float>(screen_height / 2), static_cast<float>(screen_width / 2)});
+  screen_middle = Vector2({static_cast<float>( screen_height/ 2), static_cast<float>(screen_width/ 2)});
 }
 
 void game_context::update_game_logic() {}
 
 void game_context::update_opengl_logic() {}
 
-void game_context::update_draw2d() { return; }
+void game_context::update_draw2d() {}
 
-void game_context::update_draw3d() { return; }
+void game_context::update_draw3d() {}
+
+void game_context::update_draw_interface() {}
 
 void game_context::unload_texture() { UnloadTexture(_texture); }
 

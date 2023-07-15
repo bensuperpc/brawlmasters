@@ -1,13 +1,11 @@
 #include "game.hpp"
-#include "raylib.h"
+#include "raylib_interface.hpp"
 
 game::game(nlohmann::json &_config_json) : config_json(_config_json) {}
 
-game::~game() {
-}
+game::~game() {}
 
-void game::init() {
-}
+void game::init() {}
 
 void game::run() {
   SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
@@ -18,10 +16,10 @@ void game::run() {
   auxillary_thread = std::async(std::launch::async, &game::auxillary_thread_game_logic, this, std::ref(game_classes));
 
   InitWindow(game_context1->screen_width, game_context1->screen_height, "World of blocks");
-  //game_context1->load_texture();
+  // game_context1->load_texture();
 
   world1 = std::make_shared<world>(*game_context1.get());
-  game_classes.push_back(world1);  
+  game_classes.push_back(world1);
 
   // Play intro animation
   SetTargetFPS(60);
@@ -55,15 +53,13 @@ void game::run() {
       }
       item->update_opengl_logic();
       item->last_update_opengl_logic = std::chrono::steady_clock::now();
-
     }
 
     BeginDrawing();
-
     ClearBackground(RAYWHITE);
 
+    /*
     BeginMode3D(player1->camera);
-
     for (auto &item : game_classes) {
       if (!item->is_active) {
         continue;
@@ -71,15 +67,25 @@ void game::run() {
 
       item->update_draw3d();
     }
-
     EndMode3D();
+    */
 
+    BeginMode2D(player1->camera);
     for (auto &item : game_classes) {
       if (!item->is_active) {
         continue;
       }
 
       item->update_draw2d();
+    }
+    EndMode2D();
+
+    for (auto &item : game_classes) {
+      if (!item->is_active) {
+        continue;
+      }
+
+      item->update_draw_interface();
     }
 
     EndDrawing();
@@ -101,7 +107,7 @@ void game::run() {
 }
 
 // Update game logic and input
-void game::auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_handler>>& game_handled_classes) {
+void game::auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_handler>> &game_handled_classes) {
   while (game_running) {
     auto start_time = std::chrono::high_resolution_clock::now();
     for (auto &item : game_handled_classes) {
@@ -110,12 +116,14 @@ void game::auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_
         continue;
       }
 
+      // Update input
       if (std::chrono::steady_clock::now() - item->last_update_game_input < item->update_game_input_cooldown) {
         continue;
       }
       item->update_game_input();
       item->last_update_game_input = std::chrono::steady_clock::now();
 
+      // Update game logic
       if (std::chrono::steady_clock::now() - item->last_update_game_logic < item->update_game_logic_cooldown) {
         continue;
       }

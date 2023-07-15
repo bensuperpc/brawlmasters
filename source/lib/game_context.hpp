@@ -8,14 +8,14 @@
 #include <omp.h>
 
 // Raylib
-#include "raylib.h"
+#include "raylib_interface.hpp"
 
 // World of blocks
 #include "game_element_handler.hpp"
-#include "vector.hpp"
+#include "math/vector.hpp"
 
-#include "game_element_handler.hpp"
 #include "game_context.hpp"
+#include "game_element_handler.hpp"
 
 #include "nlohmann/json.hpp"
 
@@ -31,6 +31,7 @@ public:
   void update_opengl_logic() override;
   void update_draw2d() override;
   void update_draw3d() override;
+  void update_draw_interface() override;
 
   void load_texture();
   void unload_texture();
@@ -44,9 +45,8 @@ public:
 
   // Game variables
   Vector2 mouse_position = {0, 0};
+  Vector2 mouse_position_in_world = {0, 0};
   Vector2 screen_middle = {0, 0};
-
-  Vector3 player_pos = {0, 0, 0};
 
   benlib::Vector3i block_info_pos = {0, 0, 0};
   size_t block_info_index = 0;
