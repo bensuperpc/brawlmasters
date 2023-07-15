@@ -5,7 +5,9 @@
 #include <vector>
 
 #include "nlohmann/json.hpp"
-#include "raylib.h"
+
+// Raylib
+#include "raylib_interface.hpp"
 
 #include "logger/logger_facade.hpp"
 

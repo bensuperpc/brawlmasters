@@ -1,6 +1,6 @@
-# world_of_blocks
+# brawl masters
 
-A voxel-based game engine written in C++20/C99 and [Raylib](https://www.raylib.com/), inspired by [Minecraft](https://www.minecraft.net/).
+A beat 'em up game engine written in C++20/C99 and [Raylib](https://www.raylib.com/), inspired by [Vampire Survivors](https://store.steampowered.com/app/1794680/Vampire_Survivors/)
 
 ## About
 
@@ -34,6 +34,10 @@ See the [CONTRIBUTING](CONTRIBUTING.md) document.
 - [FastNoise2](https://github.com/Auburn/FastNoise2)
 - [Google Test](https://github.com/google/googletest)
 - [Google Benchmark](https://github.com/google/benchmark)
+
+### Inspiration and sources
+- [Vampire Survivors](https://store.steampowered.com/app/1794680/Vampire_Survivors/)
+- [raylib-instancing](https://github.com/ChrisDill/raylib-instancing)
 
 ## Licensing
 

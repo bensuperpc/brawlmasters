@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_LOGGER_BASE_HPP
-#define WORLD_OF_CUBE_LOGGER_BASE_HPP
+#ifndef BRAWL_MASTERS_LOGGER_BASE_HPP
+#define BRAWL_MASTERS_LOGGER_BASE_HPP
 
 #include <filesystem>
 #include <string>
@@ -15,4 +15,4 @@ protected:
   std::unique_ptr<logger_decorator> logger;
 };
 
-#endif // WORLD_OF_CUBE_LOGGER_BASE_HPP
+#endif // BRAWL_MASTERS_LOGGER_BASE_HPP

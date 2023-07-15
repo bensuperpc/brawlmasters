@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_GAME_BASE_HPP
-#define WORLD_OF_CUBE_GAME_BASE_HPP
+#ifndef BRAWL_MASTERS_GAME_BASE_HPP
+#define BRAWL_MASTERS_GAME_BASE_HPP
 
 class game_base {
 public:
@@ -10,4 +10,4 @@ public:
   bool is_visible = true;
 };
 
-#endif // WORLD_OF_CUBE_GAME_BASE_HPP
+#endif // BRAWL_MASTERS_GAME_BASE_HPP

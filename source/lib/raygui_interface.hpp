@@ -1,5 +1,5 @@
-#ifndef RAYGUI_CPP_HPP
-#define RAYGUI_CPP_HPP
+#ifndef BRAWL_MASTERS_RAYGUI_INTERFACE_HPP
+#define BRAWL_MASTERS_RAYGUI_INTERFACE_HPP
 
 #if defined(__cplusplus)
 extern "C" {
@@ -9,4 +9,4 @@ extern "C" {
 }
 #endif
 
-#endif // RAYGUI_CPP_HPP
+#endif // BRAWL_MASTERS_RAYGUI_INTERFACE_HPP

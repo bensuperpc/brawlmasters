@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_PLAYER_HPP
-#define WORLD_OF_CUBE_PLAYER_HPP
+#ifndef BRAWL_MASTERS_PLAYER_HPP
+#define BRAWL_MASTERS_PLAYER_HPP
 
 #include <iostream>
 #include <string>
@@ -8,7 +8,7 @@
 #include <omp.h>
 
 // Raylib
-#include "raylib.h"
+#include "raylib_interface.hpp"
 
 // World of blocks
 #include "game_element_handler.hpp"
@@ -41,4 +41,4 @@ private:
   std::unique_ptr<logger_decorator> player_logger;
 };
 
-#endif // WORLD_OF_CUBE_WORLD_HPP
+#endif // BRAWL_MASTERS_HPP

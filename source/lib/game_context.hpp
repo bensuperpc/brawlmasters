@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_GAME_CONTEXT_HPP
-#define WORLD_OF_CUBE_GAME_CONTEXT_HPP
+#ifndef BRAWL_MASTERS_GAME_CONTEXT_HPP
+#define BRAWL_MASTERS_GAME_CONTEXT_HPP
 
 #include <iostream>
 #include <string>
@@ -70,4 +70,4 @@ public:
   bool *display_debug_menu = nullptr;
 };
 
-#endif // WORLD_OF_CUBE_WORLD_HPP
+#endif // BRAWL_MASTERS_HPP

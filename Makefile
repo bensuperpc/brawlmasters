@@ -18,7 +18,7 @@
 #//                                                          //
 #//////////////////////////////////////////////////////////////
 
-PROJECT_NAME := world_of_blocks
+PROJECT_NAME := brawl_masters
 
 PARALLEL := 1
 

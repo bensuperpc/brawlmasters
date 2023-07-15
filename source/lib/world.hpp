@@ -1,13 +1,11 @@
-#ifndef WORLD_OF_CUBE_WORLD_HPP
-#define WORLD_OF_CUBE_WORLD_HPP
+#ifndef BRAWL_MASTERS_WORLD_HPP
+#define BRAWL_MASTERS_WORLD_HPP
 
 #include <iostream>
 #include <string>
 #include <vector>
 
 #include <omp.h>
-
-
 
 // World of blocks
 #include "game_element_handler.hpp"
@@ -18,14 +16,10 @@
 
 #include <stdlib.h>
 
-
 #define MAX_BUNNIES        500000    // 50K bunnies limit
-#define MAX_BATCH_ELEMENTS  16384
-#define RL_DEFAULT_BATCH_BUFFER_ELEMENTS    8192
 
-#include "rlgl.h"
 // Raylib
-#include "raylib.h"
+#include "raylib_interface.hpp"
 
 typedef struct Bunny {
     Vector2 position;
@@ -67,4 +61,4 @@ private:
 
 };
 
-#endif // WORLD_OF_CUBE_WORLD_HPP
+#endif // BRAWL_MASTERS_HPP

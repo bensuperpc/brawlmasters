@@ -1,6 +1,6 @@
 install(
-    TARGETS world_of_blocks_exe
-    RUNTIME COMPONENT world_of_blocks_Runtime
+    TARGETS brawl_masters_exe
+    RUNTIME COMPONENT brawl_masters_Runtime
 )
 
 if(PROJECT_IS_TOP_LEVEL)

@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 
-TEST(world_of_blocks, basic_generation_2) {
+TEST(brawl_masters, basic_generation_2) {
   generator new_generator(2510586073u);
 
   uint32_t chunk_x = 2;

@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_MATH_HPP
-#define WORLD_OF_CUBE_MATH_HPP
+#ifndef BRAWL_MASTERS_MATH_HPP
+#define BRAWL_MASTERS_MATH_HPP
 
 #include "vector.hpp"
 
@@ -30,4 +30,4 @@ template <typename T = size_t> [[nodiscard]] inline constexpr T convert_to_1d(co
 
 } // namespace math
 
-#endif // WORLD_OF_CUBE_BLOCK_HPP
+#endif // BRAWL_MASTERS_BLOCK_HPP

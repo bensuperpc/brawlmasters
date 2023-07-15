@@ -1,5 +1,5 @@
-#ifndef GAME_HPP
-#define GAME_HPP
+#ifndef BRAWL_MASTERS_GAME_HPP
+#define BRAWL_MASTERS_GAME_HPP
 
 #include <algorithm>
 #include <chrono>

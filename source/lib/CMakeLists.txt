@@ -20,7 +20,7 @@
 
 cmake_minimum_required(VERSION 3.14)
 project(
-    world_of_blocks_lib
+    brawl_masters_lib
     VERSION 0.1.0
     DESCRIPTION "world of blocks lib"
     HOMEPAGE_URL "https://github.com/bensuperpc"
@@ -46,7 +46,8 @@ set(HEADERS
     player.hpp
     world.hpp
     game_context.hpp
-    raygui_cpp.hpp
+    raylib_interface.hpp
+    raylib_interface.hpp
 )
 
 #add_library(${PROJECT_NAME} INTERFACE)
@@ -60,7 +61,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC logger::logger)
 
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_20)
 
-set_target_properties(world_of_blocks_lib
+set_target_properties(brawl_masters_lib
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
@@ -70,7 +71,7 @@ set_target_properties(world_of_blocks_lib
 
 
 target_include_directories(
-    world_of_blocks_lib INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
+    brawl_masters_lib INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
 
 

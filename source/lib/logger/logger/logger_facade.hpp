@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_LOGGER_DECORATOR_HPP
-#define WORLD_OF_CUBE_LOGGER_DECORATOR_HPP
+#ifndef BRAWL_MASTERS_LOGGER_DECORATOR_HPP
+#define BRAWL_MASTERS_LOGGER_DECORATOR_HPP
 
 #include <filesystem>
 #include <iostream>
@@ -98,4 +98,4 @@ private:
   static inline std::mutex _mutex;
 };
 
-#endif // WORLD_OF_CUBE_SODLOG_LOGGER_HPP
+#endif // BRAWL_MASTERS_SODLOG_LOGGER_HPP

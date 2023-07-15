@@ -1,5 +1,5 @@
-#ifndef WORLD_OF_CUBE_VECTOR_HPP
-#define WORLD_OF_CUBE_VECTOR_HPP
+#ifndef BRAWL_MASTERS_VECTOR_HPP
+#define BRAWL_MASTERS_VECTOR_HPP
 
 #include <cstdint>
 
@@ -16,4 +16,4 @@ typedef struct Vector2i {
 } Vector2i;
 } // namespace benlib
 
-#endif // WORLD_OF_CUBE_VECTOR_HPP
+#endif // BRAWL_MASTERS_VECTOR_HPP

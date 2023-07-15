@@ -7,10 +7,10 @@ endif()
 
 add_custom_target(
     run-exe
-    COMMAND world_of_blocks_exe
+    COMMAND brawl_masters_exe
     VERBATIM
 )
-add_dependencies(run-exe world_of_blocks_exe)
+add_dependencies(run-exe brawl_masters_exe)
 
 option(BUILD_MCSS_DOCS "Build documentation using Doxygen and m.css" OFF)
 if(BUILD_MCSS_DOCS)

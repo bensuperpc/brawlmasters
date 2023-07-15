@@ -26,7 +26,7 @@
       "hidden": true,
       "inherits": "cmake-pedantic",
       "cacheVariables": {
-        "world_of_blocks_DEVELOPER_MODE": "ON"
+        "brawl_masters_DEVELOPER_MODE": "ON"
       }
     },
     {
