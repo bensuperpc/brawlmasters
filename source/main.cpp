@@ -15,7 +15,7 @@
 
 auto main(int [[maybe_unused]] argc, [[maybe_unused]] char *argv[]) -> int {
   // Set log level for Raylib
-  // SetTraceLogLevel(LOG_WARNING);
+  SetTraceLogLevel(LOG_WARNING);
 
   std::ios_base::sync_with_stdio(false);
 

@@ -15,7 +15,7 @@ game_context::~game_context() {}
 
 void game_context::update_game_input() {
   mouse_position = GetMousePosition();
-  screen_middle = Vector2({static_cast<float>( screen_height/ 2), static_cast<float>(screen_width/ 2)});
+  screen_middle = Vector2({static_cast<float>( screen_width / 2), static_cast<float>(screen_height/ 2)});
 }
 
 void game_context::update_game_logic() {}

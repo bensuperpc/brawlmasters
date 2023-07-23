@@ -5,7 +5,7 @@ player::player(game_context &game_context_ref) : _game_context_ref(game_context_
 
   Camera2D _camera = {{0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f, 1.0f};
 
-  _camera.target = {-0.0f, 0.0f};
+  _camera.target = {0.0f, 0.0f};
   _camera.offset = {0.0f, 0.0f};
   _camera.rotation = 0.0f;
   _camera.zoom = 1.0f;
@@ -50,13 +50,17 @@ void player::update_game_input() {
     camera.zoom = 3.0f;
   else if (camera.zoom < 0.1f)
     camera.zoom = 0.1f;
+  
+  _game_context_ref.player_position = camera.target;
 }
 
 void player::update_game_logic() {}
 
 void player::update_opengl_logic() {}
 
-void player::update_draw2d() {}
+void player::update_draw2d() {
+  DrawRectangleRec({camera.target.x + 50.0f, camera.target.y + 50.0f, 10, 10}, RED);
+}
 
 void player::update_draw3d() {}
 

@@ -34,11 +34,11 @@ world::world(game_context &game_context_ref) : _game_context_ref(game_context_re
 }
 
 world::~world() {
-  RL_FREE(bunnies); // Unload bunnies data array
+  RL_FREE(bunnies);
 
   rlUnloadVertexBuffer(buffer);
   rlUnloadRenderBatch(batch);
-  UnloadTexture(texBunny); // Unload bunny texture
+  UnloadTexture(texBunny);
   UnloadShader(shader);
 }
 

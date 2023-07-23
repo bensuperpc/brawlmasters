@@ -48,6 +48,8 @@ public:
   Vector2 mouse_position_in_world = {0, 0};
   Vector2 screen_middle = {0, 0};
 
+  Vector2 player_position = {0, 0};
+
   benlib::Vector3i block_info_pos = {0, 0, 0};
   size_t block_info_index = 0;
   Texture2D _texture;
