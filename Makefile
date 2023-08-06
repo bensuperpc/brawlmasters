@@ -1,15 +1,9 @@
-#//////////////////////////////////////////////////////////////
-#//   ____                                                   //
-#//  | __ )  ___ _ __  ___ _   _ _ __   ___ _ __ _ __   ___  //
-#//  |  _ \ / _ \ '_ \/ __| | | | '_ \ / _ \ '__| '_ \ / __| //
-#//  | |_) |  __/ | | \__ \ |_| | |_) |  __/ |  | |_) | (__  //
-#//  |____/ \___|_| |_|___/\__,_| .__/ \___|_|  | .__/ \___| //
-#//                             |_|             |_|          //
+
 #//////////////////////////////////////////////////////////////
 #//                                                          //
-#//  sandbox, 2023                               //
+#//  Brawl Masters, 2023                                     //
 #//  Created: 04, June, 2021                                 //
-#//  Modified: 21, April, 2023                               //
+#//  Modified: 06, August, 2023                              //
 #//  file: -                                                 //
 #//  -                                                       //
 #//  Source:                                                 //
@@ -30,7 +24,7 @@ CTEST_OPTIONS := --output-on-failure --timeout $(CTEST_TIMEOUT) --parallel $(PAR
 
 # LANG := en
 # LANG=$(LANG)
-# -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 -Werror=float-equal
+# -Werror=float-equal
 
 .PHONY: build
 build: base

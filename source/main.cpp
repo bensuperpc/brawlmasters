@@ -22,6 +22,7 @@ auto main(int [[maybe_unused]] argc, [[maybe_unused]] char *argv[]) -> int {
   auto loggerer = logger_decorator("main", "main.log");
 
   loggerer.info("Welcome to world of blocks!");
+  
   if (std::filesystem::exists("config.json")) {
     std::filesystem::remove("config.json");
   }
@@ -33,9 +34,7 @@ auto main(int [[maybe_unused]] argc, [[maybe_unused]] char *argv[]) -> int {
     config_json["display"]["screen_width"] = 1920;
     config_json["display"]["screen_height"] = 1080;
     config_json["display"]["target_fps"] = 240;
-    config_json["world"]["render_distance"] = 2;
-    config_json["world"]["view_distance"] = 3;
-    config_json["world"]["unload_distance"] = 4;
+    config_json["world"]["max_entities"] = 2;
 
     std::ofstream config_file("config.json");
     config_file << config_json;

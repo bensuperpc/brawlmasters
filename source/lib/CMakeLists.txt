@@ -27,10 +27,8 @@ project(
     LANGUAGES C CXX
 )
 
-include(../../cmake/lib/raygui.cmake)
 include(../../cmake/lib/raylib.cmake)
 include(../../cmake/lib/openmp.cmake)
-include(../../cmake/lib/fast_noise2.cmake)
 include(../../cmake/lib/json.cmake)
 include(../../cmake/utile/ccache.cmake)
 
@@ -41,6 +39,7 @@ set(SOURCES
     player.cpp
     world.cpp
     game_context.cpp
+    game_base.cpp
 )
 
 set(HEADERS
@@ -56,7 +55,7 @@ add_library(${PROJECT_NAME} ${SOURCES})
 #target_precompile_headers(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/generator.hpp>)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
-target_link_libraries(${PROJECT_NAME} PUBLIC FastNoise2 nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PUBLIC nlohmann_json::nlohmann_json)
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenMP::OpenMP_C OpenMP::OpenMP_CXX)
 target_link_libraries(${PROJECT_NAME} PUBLIC logger::logger benlib_math::benlib_math)
 

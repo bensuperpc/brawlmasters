@@ -35,7 +35,6 @@ add_subdirectory(source/lib) # brawl_masters_lib
 add_subdirectory(source/intro) # benlib_intro
 
 include(cmake/lib/openmp.cmake)
-include(cmake/lib/raygui.cmake)
 include(cmake/lib/raylib.cmake)
 #include(cmake/lib/fast_noise2.cmake)
 include(cmake/lib/spdlog.cmake)
@@ -53,7 +52,7 @@ target_compile_features(brawl_masters_exe PRIVATE cxx_std_20)
 
 target_link_libraries(brawl_masters_exe PRIVATE brawl_masters_lib benlib_intro)
 target_link_libraries(brawl_masters_exe PRIVATE raylib)
-target_link_libraries(brawl_masters_exe PRIVATE FastNoise2 OpenMP::OpenMP_CXX)
+target_link_libraries(brawl_masters_exe PRIVATE OpenMP::OpenMP_CXX)
 target_link_libraries(brawl_masters_exe PRIVATE nlohmann_json::nlohmann_json)
 
 set_target_properties(brawl_masters_exe
