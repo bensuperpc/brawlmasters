@@ -108,6 +108,12 @@ gprof:
 	cmake --build build/$@
 	@echo "Run executable and after gprof <exe> gmon.out | less"
 
+.PHONY: perf
+gprof:
+	cmake --preset=$@ -G Debug
+	cmake --build build/$@
+	perf record --all-user -e branch-misses ./build/$@/bin/$(PROJECT_NAME)
+
 .PHONY: graph
 graph:
 	cmake -B build/$@ -S $(PROJECT_ROOT) -G $(GENERATOR) --graphviz=build/$@/graph.dot
@@ -118,7 +124,7 @@ graph:
 valgrind:
 	cmake -B build/$@ -S $(PROJECT_ROOT) -G $(GENERATOR) --preset=debugger
 	cmake --build build/$@
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=build/$@/valgrind.log build/$@/bin/$(PROJECT_NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=build/$@/valgrind.log ./build/$@/bin/$(PROJECT_NAME)
 
 .PHONY: gdb
 gdb:

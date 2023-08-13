@@ -1,6 +1,6 @@
 #include "world.hpp"
 
-world::world(game_context &game_context_ref) : _game_context_ref(game_context_ref) {
+world::world(game_context &game_context_ref) : _game_ctx(game_context_ref) {
   texBunny = LoadTexture("../asset/wabbit_alpha.png");
   shader = LoadShader("../asset/bunnymark_instanced.vs", "../asset/bunnymark_instanced.fs");
   bunnies = (Bunny *)RL_CALLOC(MAX_BUNNIES, sizeof(Bunny));
@@ -49,15 +49,15 @@ void world::update_game_input() {
 
   if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
     // Create more bunnies
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10000; i++) {
       if (bunniesCount < MAX_BUNNIES) {
 
         // Add bunny only if is inside the screen limits
-        if (_game_context_ref.mouse_position_in_world.x < 15.0f || _game_context_ref.mouse_position_in_world.x > _game_context_ref.screen_width - 15.0f
-            || _game_context_ref.mouse_position_in_world.y < 15.0f || _game_context_ref.mouse_position_in_world.y > _game_context_ref.screen_height - 15.0f) {
+        if (_game_ctx.mouse_position_in_world.x < 15.0f || _game_ctx.mouse_position_in_world.x > _game_ctx.screen_width - 15.0f
+            || _game_ctx.mouse_position_in_world.y < 15.0f || _game_ctx.mouse_position_in_world.y > _game_ctx.screen_height - 15.0f) {
           continue;
         }
-        bunnies[bunniesCount].position = _game_context_ref.mouse_position_in_world;
+        bunnies[bunniesCount].position = _game_ctx.mouse_position_in_world;
         bunnies[bunniesCount].speed.x = (float)GetRandomValue(-350, 350) / 60.0f;
         bunnies[bunniesCount].speed.y = (float)GetRandomValue(-350, 350) / 60.0f;
         bunnies[bunniesCount].color = (Color){GetRandomValue(50, 240), GetRandomValue(80, 240), GetRandomValue(100, 240), 255};

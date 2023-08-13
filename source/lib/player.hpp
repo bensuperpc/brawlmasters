@@ -35,7 +35,7 @@ public:
   Camera2D camera;
 
 private:
-  game_context &_game_context_ref;
+  game_context &_game_ctx;
 
   // logger
   std::unique_ptr<logger_decorator> player_logger;
