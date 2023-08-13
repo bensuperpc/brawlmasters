@@ -37,6 +37,7 @@ void Player::updateGameInput() {
 
   const float player_speed = 0.75f;
   float zoom = GetMouseWheelMove() * 0.5f;
+  
   if (IsKeyDown(KEY_UP)) {
     camera.target.y -= player_speed;
   }
@@ -49,12 +50,6 @@ void Player::updateGameInput() {
   if (IsKeyDown(KEY_RIGHT)) {
     camera.target.x += player_speed;
   }
-
-  camera.zoom += ((float)GetMouseWheelMove() * 0.05f);
-  if (camera.zoom > 3.0f)
-    camera.zoom = 3.0f;
-  else if (camera.zoom < 0.1f)
-    camera.zoom = 0.1f;
   
   _game_ctx.player_position = camera.target;
 }

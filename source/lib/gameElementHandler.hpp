@@ -5,6 +5,7 @@
 
 #include <chrono>
 #include <string>
+#include <mutex>
 
 class gameElementHandler : public GameBase {
 public:
@@ -34,6 +35,8 @@ public:
 
   // Update draw interface (Like Text, etc)
   virtual void updateDrawInterface() = 0;
+
+  std::mutex _mutex;
 
   std::string name = "";
 };
