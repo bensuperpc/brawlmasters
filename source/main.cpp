@@ -11,7 +11,7 @@
 
 #include "logger/logger_facade.hpp"
 
-#include "game.hpp"
+#include "Game.hpp"
 
 auto main(int [[maybe_unused]] argc, [[maybe_unused]] char *argv[]) -> int {
   // Set log level for Raylib
@@ -50,10 +50,10 @@ auto main(int [[maybe_unused]] argc, [[maybe_unused]] char *argv[]) -> int {
 
   config_file >> config_json;
 
-  game current_game = game(config_json);
+  Game current_game = Game(config_json);
   current_game.init();
   loggerer.info("Game initialized!");
-  loggerer.info("Starting game loop...");
+  loggerer.info("Starting Game loop...");
   current_game.run();
   loggerer.info("Game loop ended!");
   return 0;

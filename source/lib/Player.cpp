@@ -1,7 +1,7 @@
-#include "player.hpp"
+#include "Player.hpp"
 
-player::player(game_context &game_context_ref) : _game_ctx(game_context_ref) {
-  player_logger = std::make_unique<logger_decorator>("player", "player.log");
+Player::Player(GameContext &game_context_ref) : _game_ctx(game_context_ref) {
+  player_logger = std::make_unique<logger_decorator>("Player", "Player.log");
 
   Camera2D _camera = {{0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f, 1.0f};
 
@@ -26,13 +26,13 @@ player::player(game_context &game_context_ref) : _game_ctx(game_context_ref) {
   // SetTextureWrap(textureGrid, TEXTURE_WRAP_CLAMP);
 }
 
-player::~player() {
+Player::~Player() {
   player_logger->info("Player destructor called");
   UnloadTexture(*texPlayer);
 }
 
-void player::update_game_input() {
-  // TODO: Move to game_context
+void Player::updateGameInput() {
+  // TODO: Move to GameContext
   _game_ctx.mouse_position_in_world = GetScreenToWorld2D(_game_ctx.mouse_position, camera);
 
   const float player_speed = 0.75f;
@@ -59,17 +59,17 @@ void player::update_game_input() {
   _game_ctx.player_position = camera.target;
 }
 
-void player::update_game_logic() {}
+void Player::updateGameLogic() {}
 
-void player::update_opengl_logic() {}
+void Player::updateOpenglLogic() {}
 
-void player::update_draw2d() {
+void Player::updateDraw2d() {
   DrawRectangleRec({camera.target.x, camera.target.y, 10, 10}, RED);
 }
 
-void player::update_draw3d() {}
+void Player::updateDraw3d() {}
 
-void player::update_draw_interface() {
+void Player::updateDrawInterface() {
   // DrawTexture(*texPlayer, camera.target.x, camera.target.y, BLUE);
   //  Draw crosshair in the middle of the screen
   DrawLine(_game_ctx.screen_middle.x - 10, _game_ctx.screen_middle.y, _game_ctx.screen_middle.x + 10, _game_ctx.screen_middle.y,

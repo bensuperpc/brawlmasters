@@ -1,19 +1,19 @@
-#include "game.hpp"
+#include "Game.hpp"
 #include "raylib_interface.hpp"
 
-game::game(nlohmann::json &_config_json) : config_json(_config_json) {}
+Game::Game(nlohmann::json &_config_json) : config_json(_config_json) {}
 
-game::~game() {}
+Game::~Game() {}
 
-void game::init() {}
+void Game::init() {}
 
-void game::run() {
+void Game::run() {
   SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
-  game_context1 = std::make_shared<game_context>(game_classes, config_json);
+  game_context1 = std::make_shared<GameContext>(game_classes, config_json);
   game_classes.push_back(game_context1);
 
-  auxillary_thread = std::async(std::launch::async, &game::auxillary_thread_game_logic, this, std::ref(game_classes));
+  auxillary_thread = std::async(std::launch::async, &Game::auxillary_thread_game_logic, this, std::ref(game_classes));
 
   InitWindow(game_context1->screen_width, game_context1->screen_height, "World of blocks");
   // game_context1->load_texture();
@@ -33,7 +33,7 @@ void game::run() {
   SetTargetFPS(game_context1->target_fps);
 
   // Player init after window is created
-  player1 = std::make_shared<player>(*game_context1.get());
+  player1 = std::make_shared<Player>(*game_context1.get());
   game_classes.push_back(player1);
 
   while (game_running) {
@@ -51,7 +51,7 @@ void game::run() {
       if (std::chrono::steady_clock::now() - item->last_update_opengl_logic < item->update_opengl_logic_cooldown) {
         continue;
       }
-      item->update_opengl_logic();
+      item->updateOpenglLogic();
       item->last_update_opengl_logic = std::chrono::steady_clock::now();
     }
 
@@ -65,7 +65,7 @@ void game::run() {
         continue;
       }
 
-      item->update_draw3d();
+      item->updateDraw3d();
     }
     EndMode3D();
     */
@@ -76,7 +76,7 @@ void game::run() {
         continue;
       }
 
-      item->update_draw2d();
+      item->updateDraw2d();
     }
     EndMode2D();
 
@@ -85,7 +85,7 @@ void game::run() {
         continue;
       }
 
-      item->update_draw_interface();
+      item->updateDrawInterface();
     }
 
     EndDrawing();
@@ -106,8 +106,8 @@ void game::run() {
   CloseWindow();
 }
 
-// Update game logic and input
-void game::auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_handler>> &game_handled_classes) {
+// Update Game logic and input
+void Game::auxillary_thread_game_logic(std::vector<std::shared_ptr<gameElementHandler>> &game_handled_classes) {
   while (game_running) {
     auto start_time = std::chrono::high_resolution_clock::now();
     for (auto &item : game_handled_classes) {
@@ -120,18 +120,18 @@ void game::auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_
       if (std::chrono::steady_clock::now() - item->last_update_game_input < item->update_game_input_cooldown) {
         continue;
       }
-      item->update_game_input();
+      item->updateGameInput();
       item->last_update_game_input = std::chrono::steady_clock::now();
 
-      // Update game logic
+      // Update Game logic
       if (std::chrono::steady_clock::now() - item->last_update_game_logic < item->update_game_logic_cooldown) {
         continue;
       }
-      item->update_game_logic();
+      item->updateGameLogic();
       item->last_update_game_logic = std::chrono::steady_clock::now();
     }
 
-    // Ensure that the game runs at the target fps
+    // Ensure that the Game runs at the target fps
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
     auto sleep_time = std::chrono::milliseconds(1000 / game_context1->target_fps) - duration;

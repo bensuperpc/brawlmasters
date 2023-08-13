@@ -8,8 +8,8 @@
 #include <omp.h>
 
 // World of blocks
-#include "game_context.hpp"
-#include "game_element_handler.hpp"
+#include "GameContext.hpp"
+#include "gameElementHandler.hpp"
 
 // spdlog
 #include "logger/logger_facade.hpp"
@@ -27,22 +27,22 @@ typedef struct Bunny {
   Color color;
 } Bunny;
 
-class world : public game_element_handler {
+class world : public gameElementHandler {
 public:
-  world(game_context &game_context_ref);
+  world(GameContext &game_context_ref);
 
   ~world();
 
-  void update_game_input() override;
-  void update_game_logic() override;
+  void updateGameInput() override;
+  void updateGameLogic() override;
 
-  void update_opengl_logic() override;
-  void update_draw2d() override;
-  void update_draw3d() override;
-  void update_draw_interface() override;
+  void updateOpenglLogic() override;
+  void updateDraw2d() override;
+  void updateDraw3d() override;
+  void updateDrawInterface() override;
 
 private:
-  game_context &_game_ctx;
+  GameContext &_game_ctx;
 
   // logger
   std::unique_ptr<logger_decorator> world_logger;

@@ -11,31 +11,31 @@
 #include "raylib_interface.hpp"
 
 // World of blocks
-#include "game_context.hpp"
-#include "game_element_handler.hpp"
+#include "GameContext.hpp"
+#include "gameElementHandler.hpp"
 
 // spdlog
 #include "logger/logger_facade.hpp"
 
-class player : public game_element_handler {
+class Player : public gameElementHandler {
 public:
-  player(game_context &game_context_ref);
+  Player(GameContext &game_context_ref);
 
-  ~player();
+  ~Player();
 
-  void update_game_input() override;
-  void update_game_logic() override;
+  void updateGameInput() override;
+  void updateGameLogic() override;
 
-  void update_opengl_logic() override;
-  void update_draw2d() override;
-  void update_draw3d() override;
+  void updateOpenglLogic() override;
+  void updateDraw2d() override;
+  void updateDraw3d() override;
 
-  void update_draw_interface() override;
+  void updateDrawInterface() override;
 
   Camera2D camera;
 
 private:
-  game_context &_game_ctx;
+  GameContext &_game_ctx;
 
   // logger
   std::unique_ptr<logger_decorator> player_logger;

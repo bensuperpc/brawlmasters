@@ -1,10 +1,10 @@
 #ifndef BRAWL_MASTERS_GAME_BASE_HPP
 #define BRAWL_MASTERS_GAME_BASE_HPP
 
-class game_base {
+class GameBase {
 public:
-  virtual ~game_base();
-  explicit game_base();
+  virtual ~GameBase();
+  explicit GameBase();
 
   bool is_active = true;
   bool is_visible = true;

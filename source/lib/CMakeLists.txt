@@ -36,16 +36,16 @@ add_subdirectory(logger)
 add_subdirectory(math)
 
 set(SOURCES
-    player.cpp
+    Player.cpp
     world.cpp
-    game_context.cpp
-    game_base.cpp
+    GameContext.cpp
+    GameBase.cpp
 )
 
 set(HEADERS
-    player.hpp
+    Player.hpp
     world.hpp
-    game_context.hpp
+    GameContext.hpp
     raylib_interface.hpp
     raylib_interface.hpp
 )

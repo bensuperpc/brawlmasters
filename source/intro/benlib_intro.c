@@ -33,7 +33,7 @@ void play_intro_benlib(const int screenWidth, const int screenHeight) {
   // const char sound_path[] ="../_deps/raylib-src/examples/audio/resources/target.ogg";
   // Sound fxOgg = LoadSound(sound_path);
 
-  // Main game loop
+  // Main Game loop
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
     // Update

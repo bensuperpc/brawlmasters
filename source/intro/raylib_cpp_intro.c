@@ -28,7 +28,7 @@ void play_intro_raylib_cpp(const int screenWidth, const int screenHeight) {
   int state = 0;      // Tracking animation states (State Machine)
   float alpha = 1.0f; // Useful for fading
 
-  // Main game loop
+  // Main Game loop
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
     // Update

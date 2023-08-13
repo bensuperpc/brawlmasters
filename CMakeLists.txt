@@ -43,7 +43,7 @@ include(cmake/utile/ccache.cmake)
 
 # ---- Declare executable ----
 
-add_executable(brawl_masters_exe source/main.cpp source/game.cpp)
+add_executable(brawl_masters_exe source/main.cpp source/Game.cpp)
 add_executable(brawl_masters::exe ALIAS brawl_masters_exe)
 
 set_property(TARGET brawl_masters_exe PROPERTY OUTPUT_NAME brawl_masters)

@@ -28,29 +28,29 @@ extern "C" {
 #include "raylib_intro.h"
 }
 
-#include "player.hpp"
+#include "Player.hpp"
 #include "world.hpp"
 
-#include "game_context.hpp"
-#include "game_element_handler.hpp"
+#include "GameContext.hpp"
+#include "gameElementHandler.hpp"
 #include "nlohmann/json.hpp"
 
-class game {
+class Game {
 public:
-  game(nlohmann::json &_config_json);
-  ~game();
+  Game(nlohmann::json &_config_json);
+  ~Game();
   void run();
   void init();
 
   void render_thread_func();
-  void auxillary_thread_game_logic(std::vector<std::shared_ptr<game_element_handler>> &);
+  void auxillary_thread_game_logic(std::vector<std::shared_ptr<gameElementHandler>> &);
 
 private:
-  std::shared_ptr<player> player1;
-  std::shared_ptr<game_context> game_context1;
+  std::shared_ptr<Player> player1;
+  std::shared_ptr<GameContext> game_context1;
   std::shared_ptr<world> world1;
 
-  std::vector<std::shared_ptr<game_element_handler>> game_classes;
+  std::vector<std::shared_ptr<gameElementHandler>> game_classes;
 
   nlohmann::json &config_json;
   std::future<void> auxillary_thread;

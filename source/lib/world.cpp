@@ -1,6 +1,6 @@
 #include "world.hpp"
 
-world::world(game_context &game_context_ref) : _game_ctx(game_context_ref) {
+world::world(GameContext &game_context_ref) : _game_ctx(game_context_ref) {
   texBunny = LoadTexture("../asset/wabbit_alpha.png");
   shader = LoadShader("../asset/bunnymark_instanced.vs", "../asset/bunnymark_instanced.fs");
   bunnies = (Bunny *)RL_CALLOC(MAX_BUNNIES, sizeof(Bunny));
@@ -42,7 +42,7 @@ world::~world() {
   UnloadShader(shader);
 }
 
-void world::update_game_input() {
+void world::updateGameInput() {
   if (IsKeyPressed(KEY_I)) {
     this->drawInstanced = !this->drawInstanced;
   }
@@ -68,7 +68,7 @@ void world::update_game_input() {
   }
 }
 
-void world::update_game_logic() {
+void world::updateGameLogic() {
   std::lock_guard<std::mutex> lock(_world_mutex);
   // #pragma omp parallel for schedule(auto)
   for (int i = 0; i < bunniesCount; i++) {
@@ -82,9 +82,9 @@ void world::update_game_logic() {
   }
 }
 
-void world::update_opengl_logic() {}
+void world::updateOpenglLogic() {}
 
-void world::update_draw2d() {
+void world::updateDraw2d() {
   std::lock_guard<std::mutex> lock(_world_mutex);
   // Re-upload bunnies array every frame to apply movement
   int length = std::min(bunniesCount, bufferLength);
@@ -106,9 +106,9 @@ void world::update_draw2d() {
   }
 }
 
-void world::update_draw3d() {}
+void world::updateDraw3d() {}
 
-void world::update_draw_interface() {
+void world::updateDrawInterface() {
   DrawRectangle(0, 0, GetScreenWidth(), 40, BLACK);
   DrawText(TextFormat("bunnies: %i", bunniesCount), 120, 10, 20, GREEN);
 
