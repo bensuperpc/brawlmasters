@@ -56,10 +56,10 @@ void Player::updateGameInput() {
     camera.zoom = 0.1f;
 
   _game_ctx.player_position = _playerPosition;
+  camera.target = _playerPosition;
 }
 
 void Player::updateGameLogic() {
-  camera.target = _playerPosition;
 }
 
 void Player::updateOpenglLogic() {}
