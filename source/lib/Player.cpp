@@ -65,9 +65,7 @@ void Player::updateGameLogic() {
 void Player::updateOpenglLogic() {}
 
 void Player::updateDraw2d() {
-  DrawRectangleRec({camera.target.x, camera.target.y, 10, 10}, RED);
-  std::cout << "Player position: " << _playerPosition.x << ", " << _playerPosition.y << std::endl;
-  std::cout << "Camera position: " << camera.target.x << ", " << camera.target.y << std::endl;
+  DrawRectangleRec({_playerPosition.x, _playerPosition.y, 10, 10}, RED);
 }
 
 void Player::updateDraw3d() {}
