@@ -34,6 +34,8 @@ public:
 
   Camera2D camera;
 
+  Vector2 _playerPosition;
+
 private:
   GameContext &_game_ctx;
 

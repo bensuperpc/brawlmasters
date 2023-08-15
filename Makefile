@@ -109,7 +109,7 @@ gprof:
 	@echo "Run executable and after gprof <exe> gmon.out | less"
 
 .PHONY: perf
-gprof:
+perf:
 	cmake --preset=$@ -G Debug
 	cmake --build build/$@
 	perf record --all-user -e branch-misses ./build/$@/bin/$(PROJECT_NAME)

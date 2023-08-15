@@ -52,7 +52,6 @@ public:
 
   benlib::Vector3i block_info_pos = {0, 0, 0};
   size_t block_info_index = 0;
-  Texture2D _texture;
 
   nlohmann::json &config_json;
 

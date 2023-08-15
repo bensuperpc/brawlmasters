@@ -15,7 +15,7 @@ public:
   // Update Game input (Like Keyboard, Mouse, etc)
   virtual void updateGameInput() = 0;
   std::chrono::steady_clock::time_point last_update_game_input;
-  std::chrono::milliseconds update_game_input_cooldown = std::chrono::milliseconds(2);
+  std::chrono::milliseconds update_game_input_cooldown = std::chrono::milliseconds(4);
 
   // Update Game logic (Like physics, etc)
   virtual void updateGameLogic() = 0;

@@ -28,10 +28,9 @@ void GameContext::updateDraw3d() {}
 
 void GameContext::updateDrawInterface() {}
 
-void GameContext::unload_texture() { UnloadTexture(_texture); }
+void GameContext::unload_texture() { }
 
 void GameContext::load_texture() {
-  _texture = LoadTexture("grass.png");
   // Image img = GenImageChecked(256, 256, 32, 32, GREEN, RED);
   // Image img = GenImageColor(16, 16, WHITE);
   // Texture2D textureGrid = LoadTextureFromImage(img);

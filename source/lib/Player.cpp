@@ -5,11 +5,9 @@ Player::Player(GameContext &game_context_ref) : _game_ctx(game_context_ref) {
 
   Camera2D _camera = {{0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f, 1.0f};
 
-  _camera.target = {0.0f, 0.0f};
-  _camera.offset = {0.0f, 0.0f};
-
+  _playerPosition = {_game_ctx.screen_width/2.0f, _game_ctx.screen_height/2.0f};
   _camera.target = (Vector2){  20.0f, 20.0f };
-  _camera.offset = (Vector2){ _game_ctx.screen_width/2.0f, _game_ctx.screen_height/2.0f };
+  _camera.offset = _playerPosition;
 
   _camera.rotation = 0.0f;
   _camera.zoom = 1.0f;
@@ -36,30 +34,40 @@ void Player::updateGameInput() {
   _game_ctx.mouse_position_in_world = GetScreenToWorld2D(_game_ctx.mouse_position, camera);
 
   const float player_speed = 0.75f;
-  float zoom = GetMouseWheelMove() * 0.5f;
-  
+  float zoom = GetMouseWheelMove() * 0.05f;
+
   if (IsKeyDown(KEY_UP)) {
-    camera.target.y -= player_speed;
+    _playerPosition.y -= player_speed;
   }
   if (IsKeyDown(KEY_DOWN)) {
-    camera.target.y += player_speed;
+    _playerPosition.y += player_speed;
   }
   if (IsKeyDown(KEY_LEFT)) {
-    camera.target.x -= player_speed;
+    _playerPosition.x -= player_speed;
   }
   if (IsKeyDown(KEY_RIGHT)) {
-    camera.target.x += player_speed;
+    _playerPosition.x += player_speed;
   }
-  
-  _game_ctx.player_position = camera.target;
+
+  camera.zoom += zoom;
+  if (camera.zoom > 3.0f)
+    camera.zoom = 3.0f;
+  else if (camera.zoom < 0.1f)
+    camera.zoom = 0.1f;
+
+  _game_ctx.player_position = _playerPosition;
 }
 
-void Player::updateGameLogic() {}
+void Player::updateGameLogic() {
+  camera.target = _playerPosition;
+}
 
 void Player::updateOpenglLogic() {}
 
 void Player::updateDraw2d() {
   DrawRectangleRec({camera.target.x, camera.target.y, 10, 10}, RED);
+  std::cout << "Player position: " << _playerPosition.x << ", " << _playerPosition.y << std::endl;
+  std::cout << "Camera position: " << camera.target.x << ", " << camera.target.y << std::endl;
 }
 
 void Player::updateDraw3d() {}

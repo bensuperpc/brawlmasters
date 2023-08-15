@@ -131,6 +131,7 @@ void Game::auxillary_thread_game_logic(std::vector<std::shared_ptr<gameElementHa
       item->last_update_game_logic = std::chrono::steady_clock::now();
     }
 
+    /*
     // Ensure that the Game runs at the target fps
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
@@ -139,6 +140,7 @@ void Game::auxillary_thread_game_logic(std::vector<std::shared_ptr<gameElementHa
     if (sleep_time > std::chrono::milliseconds(2)) {
       std::this_thread::sleep_for(sleep_time);
     }
+    */
   }
 
   std::cout << "auxillary_thread_game_logic() exiting" << std::endl;
